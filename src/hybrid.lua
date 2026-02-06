@@ -49,8 +49,8 @@ function hybrid.solve(num_vars, clauses, opts)
     print("  Time: " .. string.format("%.3f", cas_time) .. "s")
   end
 
-  -- Check if Casimir fully solved it
-  if cas_satisfaction >= 99.9 then
+  -- Check if Casimir fully solved it OR if problem is trivially SAT (no clauses)
+  if cas_satisfaction >= 99.9 or #clauses == 0 then
     if verbose then
       print("[RESULT] Casimir solved it! (" .. string.format("%.2f", cas_satisfaction) .. "%)")
     end
