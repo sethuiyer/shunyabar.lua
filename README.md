@@ -162,12 +162,11 @@ This **Euler product** is the insight that connects everything: every constraint
 
 | Problem | Result | Detail |
 |---------|--------|--------|
-| Poisson 1D (step forcing) | **Converged (loss 9.9×10⁻⁷)** | Epoch 889; additive PINN failed (loss ~50.04) |
-| NS Poiseuille (incompressibility) | **82.6% better ∇·u** | Max |∇·u| = 0.018 vs additive 0.102 (5.6× better) |
-| Navier-Stokes residual | **99.64% reduction** | 0.0028 → 1×10⁻⁵ |
-| Monotonicity constraint | **0.00% violations** | Down from 31.31% |
-| Incompressibility ∇·u | **Perfect conservation** | < 1×10⁻⁹ |
-| Inference speed | **1M+ points/sec** | 745,919× faster than CFD |
+| Poisson 1D (step forcing) | **L=3.8×10⁻⁵ (converged)** | 1,052,442× better than additive (L=39.99); no λ tuning |
+| Navier-Stokes Poiseuille | **82.6% better incompressibility** | max \|∇·u\| = 0.0177 vs additive 0.102 (5.8× better) |
+| Constraint factor adaptation | **Automatic balancing** | C(v): 30.42 → 1.45 over 500 epochs (self-regulating) |
+| Gradient conflicts | **Zero** | ∇log L = ∇log L_data + γ∇v (geometric composition) |
+| Hyperparameter tuning | **None required** | Fixed τ=3.0, γ=5.0 work across problems |
 
 ### Casimir SAT
 
