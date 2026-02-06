@@ -13,8 +13,9 @@
   Energy landscape intentionally designed to fracture at phase transitions.
 ]]
 
-package.path = package.path .. ";./?.lua"
-local S = dofile("shunyabar.lua")
+local script_path = debug.getinfo(1).source:match("@?(.*/)") or "./"
+package.path = package.path .. ";" .. script_path .. "../src/?.lua"
+local S = dofile(script_path .. "../src/shunyabar.lua")
 local M = S.math
 
 M.seed(42)

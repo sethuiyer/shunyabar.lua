@@ -8,8 +8,9 @@
   5. ZetaGrok Spectral Analysis on a "memorizing" vs "grokking" matrix
 ]]
 
-package.path = package.path .. ";./?.lua"
-local S = dofile("shunyabar.lua")
+local script_path = debug.getinfo(1).source:match("@?(.*/)") or "./"
+package.path = package.path .. ";" .. script_path .. "../src/?.lua"
+local S = dofile(script_path .. "../src/shunyabar.lua")
 local M = S.math
 
 M.seed(42)

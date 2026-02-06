@@ -33,8 +33,9 @@ Using the multiplicative PINN approach from shunyabar.lua:
   where C(v) = max(Euler_gate(v), exp_barrier(v))
 ]]
 
-package.path = package.path .. ";./?.lua"
-local S = dofile("shunyabar.lua")
+local script_path = debug.getinfo(1).source:match("@?(.*/)") or "./"
+package.path = package.path .. ";" .. script_path .. "../src/?.lua"
+local S = dofile(script_path .. "../src/shunyabar.lua")
 local M = S.math
 local pinn = S.pinn
 

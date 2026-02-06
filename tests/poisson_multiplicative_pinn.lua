@@ -10,7 +10,9 @@ Boundary conditions: u(0) = u(1) = 0
 Using the multiplicative PINN approach from shunyabar.lua
 --]]
 
-local shunyabar = require("shunyabar")
+local script_path = debug.getinfo(1).source:match("@?(.*/)") or "./"
+package.path = package.path .. ";" .. script_path .. "../src/?.lua"
+local shunyabar = dofile(script_path .. "../src/shunyabar.lua")
 local M = shunyabar.math
 local pinn = shunyabar.pinn
 
