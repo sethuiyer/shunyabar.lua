@@ -142,6 +142,8 @@ This **Euler product** is the insight that connects everything: every constraint
 | Graph Isomorphism N=50 | **100% success** | vs 40% for standard SA |
 | N-Queens N=100 | **Solved** | 19-30 seconds |
 | Number Partition N=100K | **Solved** | 13.6 seconds |
+| TSP (TSPLIB bayg29) | **Optimal (1610)** | BAHA 10/10 wins vs SA; avg gap 0.86% (SA 8.94%) |
+
 
 ### Navokoj
 
