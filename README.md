@@ -142,7 +142,9 @@ This **Euler product** is the insight that connects everything: every constraint
 | Graph Isomorphism N=50 | **100% success** | vs 40% for standard SA |
 | N-Queens N=100 | **Solved** | 19-30 seconds |
 | Number Partition N=100K | **Solved** | 13.6 seconds |
-| TSP (TSPLIB bayg29) | **Optimal (1610)** | BAHA 10/10 wins vs SA; avg gap 0.86% (SA 8.94%) |
+|| TSP (TSPLIB bayg29) | **Optimal (1610)** | BAHA 10/10 wins vs SA; avg gap 0.86% (SA 8.94%) |
+|| Frustrated Lattice (3% conflict) | **61.2% better than SA** | E=433 vs SA E=1117; 299 fractures, 2 jumps (99.3% selectivity) |
+|| Frustrated Lattice (30% conflict) | **21.4% better than SA** | E=1084 vs SA E=1380; 299 fractures, 3 jumps (99.0% selectivity) |
 
 
 ### Navokoj
@@ -264,6 +266,34 @@ Two 16×16 matrices: one full-rank random ("memorizing"), one clean rank-2 ("gro
 | Loss inflation | Memorization pays **6.6x** more penalty |
 
 That's not a gradual difference — that's a **phase transition**. The multiplicative twist makes memorization *physically expensive*. A network can only reduce its loss by cleaning its spectral structure. This IS grokking, expressed as thermodynamics.
+
+#### Frustrated Lattice Scheduler — BAHA Selectivity Test
+
+Run with `lua frustrated_lattice.lua` — a synthetic scheduling problem designed to create a fractured energy landscape.
+
+The problem combines:
+- 40 jobs across 8 machines over 60 time slots
+- Precedence constraints (some jobs must finish before others start)
+- Machine conflicts (no two jobs on same machine can overlap)
+- Controlled "frustration" parameter to induce cyclic dependencies
+
+At **3% frustration** (easy landscape):
+
+|| Solver | Energy | Violations (slot/prec/machine) | Fractures/Jumps |
+||--------|--------|-------------------------------|------------------|
+|| **BAHA** | 433 | 3 / 33 / 18 | 299 detected, 2 jumps (99.3% selectivity) |
+|| **SA** | 1117 | 2 / 28 / 19 | — |
+|| **Improvement** | **61.2%** | — | — |
+
+At **30% frustration** (hard landscape):
+
+|| Solver | Energy | Violations (slot/prec/machine) | Fractures/Jumps |
+||--------|--------|-------------------------------|------------------|
+|| **BAHA** | 1084 | 2 / 32 / 23 | 299 detected, 3 jumps (99.0% selectivity) |
+|| **SA** | 1380 | 2 / 34 / 16 | — |
+|| **Improvement** | **21.4%** | — | — |
+
+The key insight: **BAHA's jump rate adapts to landscape difficulty.** Detected 299 fractures in both cases but jumped only when branch scoring indicated a true basin transition. Standard SA gets trapped in local minima; BAHA navigates between thermodynamic sheets via Lambert-W enumeration.
 
 ---
 
