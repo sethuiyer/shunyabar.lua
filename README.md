@@ -142,6 +142,8 @@ This **Euler product** is the insight that connects everything: every constraint
 | Graph Isomorphism N=50 | **100% success** | vs 40% for standard SA |
 | N-Queens N=100 | **Solved** | 19-30 seconds |
 | Number Partition N=100K | **Solved** | 13.6 seconds |
+| 50-Node List Coloring (easy) | **E=0 (perfect)** | 144 edges, 0.03s, 1 fracture, 1 jump |
+| 50-Node List Coloring (hard) | **E=11 (near-optimal)** | 279 edges, 20.4s, 998 fractures, 6 jumps (99.4% selectivity) |
 || TSP (TSPLIB bayg29) | **Optimal (1610)** | BAHA 10/10 wins vs SA; avg gap 0.86% (SA 8.94%) |
 || Frustrated Lattice (3% conflict) | **61.2% better than SA** | E=433 vs SA E=1117; 299 fractures, 2 jumps (99.3% selectivity) |
 || Frustrated Lattice (30% conflict) | **21.4% better than SA** | E=1084 vs SA E=1380; 299 fractures, 3 jumps (99.0% selectivity) |
