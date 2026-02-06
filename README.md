@@ -160,6 +160,8 @@ This **Euler product** is the insight that connects everything: every constraint
 
 | Problem | Result | Detail |
 |---------|--------|--------|
+| Poisson 1D (step forcing) | **Converged (loss 9.9×10⁻⁷)** | Epoch 889; additive PINN failed (loss ~50.04) |
+| NS Poiseuille (incompressibility) | **82.6% better ∇·u** | Max |∇·u| = 0.018 vs additive 0.102 (5.6× better) |
 | Navier-Stokes residual | **99.64% reduction** | 0.0028 → 1×10⁻⁵ |
 | Monotonicity constraint | **0.00% violations** | Down from 31.31% |
 | Incompressibility ∇·u | **Perfect conservation** | < 1×10⁻⁹ |
