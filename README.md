@@ -339,7 +339,86 @@ lua shunyabar.lua
 
 ---
 
+## Test Suite
+
+The project includes a comprehensive test suite with **48 tests** across **5 test files**, achieving **100% pass rate**. Tests cover unit testing, integration testing, stress testing, and edge cases.
+
+### Running Tests
+
+```bash
+# Run all tests
+cd tests && lua run_all_tests.lua
+
+# Run individual test suites
+lua test_casimir.lua          # Casimir solver unit tests
+lua test_walksat_unit.lua     # Walksat solver unit tests  
+lua test_edge_cases.lua       # Edge case tests
+lua test_hybrid.lua           # Integration tests
+lua test_stress.lua           # Stress tests (takes ~3 minutes)
+```
+
+### Test Files
+
+| File | Tests | Purpose | Runtime | Coverage |
+|------|-------|---------|---------|----------|
+| **test_framework.lua** | — | Lightweight testing framework with suite management, 12 assertion types, and result reporting | — | Testing infrastructure |
+| **test_casimir.lua** | 10 | Unit tests for Casimir solver: energy minimization, convergence, gradients, annealing, verification | <1s | Casimir solver mechanics |
+| **test_walksat_unit.lua** | 12 | Unit tests for Walksat solver: flipping, noise, tries, verification, best solution tracking | <1s | Walksat solver mechanics |
+| **test_edge_cases.lua** | 14 | Boundary conditions: empty problems, tautologies, contradictions, UNSAT, Horn clauses, sparse variables | <1s | Edge case handling |
+| **test_hybrid.lua** | 4 | Integration tests: simple 3-SAT, random 3-SAT, hard 3-SAT (N=100), AI Escargot Sudoku | ~60s | Hybrid solver (Casimir + Walksat) |
+| **test_stress.lua** | 8 | Hard instances: N=100/200 3-SAT, AI Escargot, 8/12-Queens, over-constrained, UNSAT, consistency | ~180s | Performance on challenging problems |
+| **run_all_tests.lua** | — | Master test runner: loads all suites, executes tests, aggregates results, generates summary | Variable | Test orchestration |
+
+### Test Coverage by Problem Type
+
+| Problem Type | Variables | Clauses | Test Files | Purpose |
+|--------------|-----------|---------|------------|---------|
+| **Trivial** | 0-3 | 0-3 | Unit tests, Edge cases | Verify correctness of basic mechanics |
+| **Simple** | 6-20 | 5-85 | Unit tests, Integration | Validate solver on easy instances |
+| **Medium** | 30-64 | 127-426 | Integration, Stress | Test scaling behavior |
+| **Hard** | 100-200 | 426-852 | Stress | Challenge solver at phase transition (ratio=4.26) |
+| **Real-World** | 729 | 8850 | Integration, Stress | AI Escargot Sudoku (world's hardest) |
+| **Structured** | 64-144 | Many | Stress | N-Queens constraint satisfaction |
+| **UNSAT** | 1-50 | 2-300 | Edge cases, Stress | Test graceful degradation |
+
+### Example Test Output
+
+```
+================================================================================
+SHUNYABAR.LUA COMPREHENSIVE TEST SUITE
+================================================================================
+  
+  Test Categories:
+    • Unit Tests (Casimir, Walksat)
+    • Integration Tests (Hybrid)
+    • Stress Tests (Hard instances)
+    • Edge Cases (Boundary conditions)
+
+[SUITE] Casimir Solver Unit Tests
+  ✓ Simple 2-clause SAT (0.000s)
+  ✓ Energy decreases over time (0.000s)
+  ✓ Convergence detection works (0.000s)
+  ...
+  Results: 10 passed, 0 failed (0.001s)
+
+[SUITE] Walksat Solver Unit Tests
+  ✓ Simple 2-clause SAT (0.000s)
+  ✓ Trivial unit clauses (0.000s)
+  ...
+  Results: 12 passed, 0 failed (0.000s)
+
+SUMMARY
+  Suites:  5
+  Tests:   48 total, 48 passed, 0 failed
+  Time:    ~240s
+  
+✓ ALL TESTS PASSED
+```
+
+---
+
 ## The Deeper Claim
+
 
 The partition function isn't a metaphor for the energy landscape — it **is** the energy landscape. The Euler product isn't a decoration on the constraint system — it **is** the constraint factorization. The phase transition isn't an analogy for grokking — it **is** the spectral gap opening that causes generalization.
 
