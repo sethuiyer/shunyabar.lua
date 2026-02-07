@@ -3,10 +3,16 @@
 **The Arithmetic Manifold in a Single File**
 
 > *"When you align your algorithm with how nature actually works, you stop fighting the problem and start flowing with it."*
->
-> — Sethu Iyer
 
 `shunyabar.lua` is a standalone, zero-dependency Lua implementation of the ShunyaBar physics-inspired computation framework. It consolidates four open-source projects — **BAHA**, **Navokoj**, **Multiplicative PINN Framework**, and **Casimir SAT Solver** — into a single coherent module.
+
+| Project                 | Problem Type                               | Key Mechanism                                        |
+| ----------------------- | ------------------------------------------ | ---------------------------------------------------- |
+| **BAHA**                | Discrete optimization (SAT, coloring, TSP) | Lambert-W branch jumping when landscape fractures    |
+| **Navokoj**             | Constraint satisfaction                    | Prime-weighted geometric flow in continuous space    |
+| **Multiplicative PINN** | Physics-informed neural networks           | Multiplicative (not additive) constraint enforcement |
+| **Casimir SAT**         | Boolean satisfiability                     | Langevin dynamics with quantum-inspired noise        |
+
 
 ## The Core Thesis
 
