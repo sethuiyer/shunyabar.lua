@@ -37,6 +37,10 @@ The four projects use $Z(\beta)$ differently:
 
 Read the math and the code at this interactive blog: [Shunyabar](https://shunyabar.lovable.app/)
 
+## Performance
+
+See the full list of benchmarks in [BENCHMARKS.md](BENCHMARKS.md).
+
 ## Test Suite
 
 The project includes a comprehensive test suite with **48 tests** across **5 test files**, achieving **100% pass rate**. Tests cover unit testing, integration testing, stress testing, and edge cases.
