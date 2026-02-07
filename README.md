@@ -37,6 +37,19 @@ The four projects use $Z(\beta)$ differently:
 
 Read the math and the code at this interactive blog: [Shunyabar](https://shunyabar.lovable.app/)
 
+## ZetaGrok: Thermodynamic Grokking
+
+ZetaGrok is a novel loss function that induces **grokking as a thermodynamic phase transition**. It penalizes spectral disorder in the weight matrices:
+
+$$ L_{total} = L_{task} \times \exp(\gamma \cdot S_{spec}) $$
+
+where $S_{spec}$ is the **Spectral Entropy**. High entropy (random weights) creates a large "Twist Factor" ($e^{\gamma S}$) that amplifies gradients, forcing the network to explore. Low entropy (structured weights) reduces the twist to ~1.0, allowing the network to "crystallize" into a generalized solution.
+
+Run the demo (Modular Addition):
+```bash
+lua tests/zetagrok_modular_addition.lua
+```
+
 ## Performance
 
 See the full list of benchmarks in [BENCHMARKS.md](BENCHMARKS.md).
